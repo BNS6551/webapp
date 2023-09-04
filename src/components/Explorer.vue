@@ -1,3 +1,7 @@
+<script>
+</script>
+
+
 <template>
   <div class="container">
     <input
@@ -120,7 +124,7 @@
             </div>
           </div>
           <div>
-            <div class="plus-card uk-card uk-card-default uk-width-1-1">
+            <div class="plus-card uk-card uk-card-default uk-width-1-1" uk-tooltip="title: Add username; offset: -130">
               <div>
                 <img class="plus-icon" src="/plus-icon.svg" />
               </div>
@@ -141,6 +145,12 @@
   border: 1px solid rgb(223, 223, 223);
   font-size: 0.9rem;
   font-weight: 400;
+  transition: all 0.1s ease-in;
+}
+
+.uk-input:focus {
+  border: 3px solid rgb(223, 223, 223);
+  transition: all 0.1s ease-in;
 }
 .uk-form-width-medium {
   width: 100%;

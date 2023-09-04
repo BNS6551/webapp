@@ -1,3 +1,30 @@
+<script>
+import { connectMetamask, getAccount, getIsConnected } from "../assets/interface_request.js";
+import { ethers } from "ethers";
+export default {
+  data() {
+    return {
+      connected: getIsConnected(),
+      account: getAccount(),
+    };
+  },
+  methods: {
+    connectOnClick: function () {
+      if (this.connected) {
+        return;
+      }
+      connectMetamask().then((success) => {
+        if (success) {
+          console.log("metamask successfully connected!");
+        } else {
+          console.log("metamask connection failed!");
+        }
+      });
+    },
+  },
+};
+</script>
+
 <template>
   <div class="container">
     <nav class="uk-navbar-container">
@@ -9,7 +36,12 @@
 
           <div class="uk-navbar-right">
             <div class="uk-navbar-item">
-              <button class="uk-button uk-button-primary">Connect</button>
+              <button v-if="!connected" class="uk-button uk-button-primary" @click="connectOnClick">
+                connect
+              </button>
+              <button v-else class="uk-button uk-button-primary" @click="connectOnClick">
+                {{ account.address }}
+              </button>
             </div>
           </div>
         </div>
