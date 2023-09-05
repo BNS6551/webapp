@@ -251,14 +251,7 @@ export default {
           </div>
 
           <!-- Create card -->
-          <div
-            v-if="
-              isConnected &&
-              keyword != '' &&
-              keyword.concat('.opbnb').toLowerCase() !=
-                filteredCards[0].name.toLowerCase()
-            "
-          >
+          <div v-if="isConnected && keyword != ''">
             <div
               class="plus-card uk-card uk-card-default uk-width-1-1"
               uk-tooltip="title: Add username; offset: -130"
