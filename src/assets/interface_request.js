@@ -8,9 +8,6 @@ import BASE from './json/BaseRegistrarImplementation.json'
 import RESOLVER from './json/PublicResolver.json';
 import CONTROLLER from './json/BNBRegistrarController.json';
 
-import { register_contract, bid_contract } from "./contract_request.js"
-import { getNodeHashes_contract, getBNSInfo_contract } from "./contract_request.js"
-
 const TestChainId = '0x15eb';
 const RPCUrl = 'https://opbnb-testnet-rpc.bnbchain.org';
 const ExplorerUrl = 'https://opbnbscan.com/';
@@ -82,4 +79,14 @@ function getIsConnected() {
     return isConnected;
 }
 
-export { connectContract, connectMetamask, getAccount, getIsConnected };
+export {
+    contract_base,
+    contract_resolver,
+    contract_controller
+}
+export {
+    connectContract,
+    connectMetamask,
+    getAccount,
+    getIsConnected
+};
