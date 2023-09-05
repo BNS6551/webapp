@@ -1,5 +1,9 @@
 <script>
-import { connectMetamask, getAccount, getIsConnected } from "../assets/interface_request.js";
+import {
+  connectMetamask,
+  getAccount,
+  getIsConnected,
+} from "../assets/interface_request.js";
 import { ethers } from "ethers";
 export default {
   data() {
@@ -9,6 +13,16 @@ export default {
     };
   },
   methods: {
+    shortenAddress(address) {
+      if (!address || address.length < 11) {
+        return address;
+      }
+      return (
+        address.substring(0, 6) +
+        "..." +
+        address.substring(address.length - 4, address.length)
+      );
+    },
     connectOnClick: function () {
       if (this.connected) {
         return;
@@ -36,11 +50,19 @@ export default {
 
           <div class="uk-navbar-right">
             <div class="uk-navbar-item">
-              <button v-if="!connected" class="uk-button uk-button-primary" @click="connectOnClick">
+              <button
+                v-if="!connected"
+                class="uk-button uk-button-primary"
+                @click="connectOnClick"
+              >
                 connect
               </button>
-              <button v-else class="uk-button uk-button-primary" @click="connectOnClick">
-                {{ account.address }}
+              <button
+                v-else
+                class="uk-button uk-button-primary"
+                @click="connectOnClick"
+              >
+                {{ shortenAddress(account.address) }}
               </button>
             </div>
           </div>
@@ -69,6 +91,8 @@ export default {
   text-fill-color: transparent;
   background-size: 500% auto;
   animation: textShine 5s ease-in-out infinite alternate;
+
+  margin: 0px 0px 0px 20px;
 }
 @keyframes textShine {
   0% {
@@ -80,5 +104,6 @@ export default {
 }
 .uk-button-primary {
   border-radius: 20px;
+  margin: 0px 20px 0px 0px;
 }
 </style>
